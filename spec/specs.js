@@ -6,10 +6,10 @@ describe ('PizzaOrder', function() {
     expect(testOrder.toppings).to.equal("cheese");
   });
 
-  // it("adds the price method to the order", function() {
-  //   var testOrder = new PizzaOrder("1", "Large", "cheese");
-  //   expect(testOrder.price()).to.equal(16);
-  // });
+  it("adds the price method to the order", function() {
+    var testOrder = new PizzaOrder("1", "Large", "cheese");
+    expect(testOrder.price()).to.equal(16);
+  });
 });
 
 
