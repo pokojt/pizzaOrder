@@ -5,12 +5,15 @@ function PizzaOrder(quantity, pizzaSize, toppings) {
 };
 
 PizzaOrder.prototype.price = function() {
+
   var price = 14;
+  var chosenToppings = [];
   var specialToppings = ["Extra Cheese", "Extra Sauce", "Garlic", "Roasted Peppers", "Pepperoni", "Sausage", "Spinach", "Pineapple", "Canadian Bacon", "Bacon", "Onions", "Mushrooms"];
 
   for (var i = 0; i < specialToppings.length; i++) {
     if(this.toppings === specialToppings[i]) {
-      price += .50;
+      chosenToppings.push(specialToppings[i]);
+      // price += .50;
     }
   }
   if (this.pizzaSize === "Small") {
@@ -22,7 +25,7 @@ PizzaOrder.prototype.price = function() {
   if (this.pizzaSize === "XL") {
     price += 4;
   }
-  return price;
+  return price + (chosenToppings.length / 2);
 };
 
 
