@@ -14,7 +14,7 @@ PizzaOrder.prototype.calculatePrice = function() {
   var medprice = 14;
 
   for (var i = 0; i < this.toppings.length; i++) {
-    for (var j = 0, j < specialToppings.length; j++){
+    for (var j = 0; j < specialToppings.length; j++){
       if(this.toppings[i] === specialToppings[j]) {
       this.toppingsPrice.push(.50);
       medprice += .50;
