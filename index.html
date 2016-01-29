@@ -22,68 +22,69 @@
           <p class="lead">Please enter your order here:</p>
           <form id="new-order">
             <div class="form-group">
-              <label for="inputtedQuantity">Quantity:</label>
+              <!-- <label for="inputtedQuantity">Quantity:</label>
               <input id="inputtedQuantity" type="number">
+            </div> -->
+            <div class="form-group">
+              <label for="inputtedName">Name your Pizza:</label>
+              <input id="inputtedName" type=text>
             </div>
             <div class="form-group">
               <label for="inputtedSize">Size:</label>
-              <select class="form-control" id="inputtedSize">
+              <select id="inputtedSize">
+                <option value="">Select Size:</option>
                 <option value="Small">Small</option>
                 <option value="Medium">Medium</option>
                 <option value="Large">Large</option>
                 <option value="XL">XL</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="inputtedName">Name your Pizza:</label>
-              <input id="inputtedName" type=text>
-            </div>
             <div class="new-toppings">
               <div class-"new-toppings">
                 <div class="form-group">
-                  <label for="inputtedToppings">Toppings:</label>
+                  <label for="inputtedToppings">Toppings:</label><p>(<em>.50 each</em>)</p>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="checkbox">
-                        <label><input type="checkbox" value="0" name="JustCheese">Just Cheese</label>
+                        <label><input type="checkbox" name="topping" value="JustCheese"><strong>Just Cheese</strong> (free)</label>
                       </div>
                       <div class="checkbox">
-                        <label><input type="checkbox" value=".50" name="ExtraCheese">Extra Cheese</label>
+                        <label><input type="checkbox" name="topping" value="ExtraCheese">Extra Cheese</label>
                       </div>
                       <div class="checkbox">
-                        <label><input type="checkbox" value=".50" name="ExtraSauce">Extra Sauce</label>
+                        <label><input type="checkbox" name="topping" value="ExtraSauce">Extra Sauce</label>
                       </div>
                       <div class="checkbox disabled">
-                        <label><input type="checkbox" value=".50" name="Garlic" disabled>Garlic</label>
+                        <label><input type="checkbox" name="topping" value="Garlic">Garlic</label>
                       </div>
                       <div class="checkbox">
-                        <label><input type="checkbox" value=".50" name="RoastedPeppers">Roasted Peppers</label>
+                        <label><input type="checkbox" name="topping" value="RoastedPeppers">Roasted Peppers</label>
                       </div>
                       <div class="checkbox">
-                        <label><input type="checkbox" value=".50" name="Pepperoni">Pepperoni</label>
+                        <label><input type="checkbox" name="topping" value="Pepperoni">Pepperoni</label>
                       </div>
                       <div class="checkbox">
-                        <label><input type="checkbox" value=".50" name="Sausage">Sausage</label>
+                        <label><input type="checkbox" name="topping" value="Sausage">Sausage</label>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="checkbox">
-                        <label><input type="checkbox" value=".50" name="Spinach">Spinach</label>
+                        <label><input type="checkbox" name="topping" value="Spinach">Spinach</label>
                       </div>
                       <div class="checkbox">
-                        <label><input type="checkbox" value=".50" name="Pineapple">Pineapple</label>
+                        <label><input type="checkbox" name="topping" value="Pineapple">Pineapple</label>
                       </div>
                       <div class="checkbox">
-                        <label><input type="checkbox" value=".50" name="CanadianBacon">Canadian Bacon</label>
+                        <label><input type="checkbox" name="topping" value="CanadianBacon">Canadian Bacon</label>
                       </div>
                       <div class="checkbox">
-                        <label><input type="checkbox" value=".50" name="Bacon">Bacon</label>
+                        <label><input type="checkbox" name="topping" value="Bacon">Bacon</label>
                       </div>
                       <div class="checkbox">
-                        <label><input type="checkbox" value=".50" name="Onions">Onions</label>
+                        <label><input type="checkbox" name="topping" value="Onions">Onions</label>
                       </div>
                       <div class="checkbox">
-                        <label><input type="checkbox" value=".50" name="Mushrooms">Mushrooms</label>
+                        <label><input type="checkbox" name="topping" value="Mushrooms">Mushrooms</label>
                       </div>
                     </div>
                   </div>
@@ -94,6 +95,7 @@
             <button type="submit" class="btn" btn-lg btn-primary>Order Pizza</button>
           </form>
           <h2 class="orderList">Your Order:</h2>
+          <p class="orderList">Click for price and details.</p>
           <ul id="orders">
 
           </ul>
@@ -101,12 +103,13 @@
         <div class="col-md-6">
           <div id="show-order">
             <h2></h2>
-            <p>Quantity: <span class="quantity"</span></p>
-            <p>Size: <span class="size"</span></p>
+            <!-- <p>Quantity: <span class="quantity"</span></p> -->
+            <!-- <p>Size: <span class="size"</span></p> -->
             <p>Toppings:</p>
             <ul id="toppings">
 
             </ul>
+            <p>Price:<space class="price"</span></p>
           </div>
         </div>
       </div>

@@ -1,25 +1,27 @@
-function PizzaOrder(quantity, pizzaSize, pizzaName, toppings, price) {
+function PizzaOrder(quantity, pizzaSize, pizzaName, toppings, toppingsPrice, price) {
   this.quantity = quantity;
   this.pizzaSize = pizzaSize;
   this.pizzaName = pizzaName;
-  this.toppings = [];
+  this.toppings = toppings;
+  this.toppingsPrice = [];
   this.price = price;
 };
 
-  var specialToppings = ["Extra Cheese", "Extra Sauce", "Garlic", "Roasted Peppers", "Pepperoni", "Sausage", "Spinach", "Pineapple", "Canadian Bacon", "Bacon", "Onions", "Mushrooms"];
 
 PizzaOrder.prototype.calculatePrice = function() {
 
+  var specialToppings = ["Extra Cheese", "Extra Sauce", "Garlic", "Roasted Peppers", "Pepperoni", "Sausage", "Spinach", "Pineapple", "Canadian Bacon", "Bacon", "Onions", "Mushrooms"];
   var medprice = 14;
-  var chosenToppings = [];
+  // var chosenToppings = [];
 
-  for (var i = 0; i < specialToppings.length; i++) {
-    // debugger;
-    if(this.toppings[i] === specialToppings[i]) {
-      chosenToppings.push(specialToppings[i]);
-      // price += .50;
-    }
-  }
+  // for (var i = 0; i < this.toppings.length; i++) {
+  //   for (var j=0, j < specialToppings.length; j++){
+  //     if(this.toppings[i] === specialToppings[j]) {
+  //     this.toppingsPrice.push(.50);
+  //     medprice += .50;
+  //     }
+  //   }
+  // }
   if (this.pizzaSize === "Small") {
     medprice -= 2;
   }
@@ -29,7 +31,7 @@ PizzaOrder.prototype.calculatePrice = function() {
   if (this.pizzaSize === "XL") {
     medprice += 4;
   }
-  return medprice + (chosenToppings.length / 2);
+  return medprice;
 };
 
 PizzaOrder.prototype.orderSummary = function() {
@@ -41,24 +43,36 @@ $(document).ready(function() {
   $("form#new-order").submit(function(event) {
     event.preventDefault();
 
+debugger;
+    var inputtedQuantity = $("input#inputtedQuantity").val();
+    var inputtedSize = $("select#inputtedSize").val();
+    var inputtedName = $("input#inputtedName").val();
 
-    var inputtedQuantity = $(this).find("input#inputtedQuantity").val();
-    var inputtedSize = $(this).find("select#inputtedSize").val();
-    var inputtedName = $(this).find("input#inputtedName").val();
-
-    var inputtedToppings = [$("input[name=JustCheese]:checked").val(), $("input[name=ExtraCheese]:checked").val(), $("input[name=ExtraSauce]:checked").val(), $("input[name=Garlic]:checked").val(), $("input[name=RoastedPeppers]:checked").val(), $("input[name=Pepperoni]:checked").val(), $("input[name=Sausage]:checked").val(), $("input[name=Spinach]:checked").val(), $("input[name=Pineapple]:checked").val(),
-    $("input[name=CanadianBacon]:checked").val(), $("input[name=Bacon]:checked").val(),
-    $("input[name=Onions]:checked").val(), $("input[name=Mushrooms]:checked").val()];
+    var inputtedToppings = [];
+      $.each($('input[name="topping"]:checked'), function() {
+        toppings.push($(this).val());
+      });
+    //  [$(this).find("input[name=JustCheese]:checked").val(), $(this).find("input[name=ExtraCheese]:checked").val(), $(this).find("input[name=ExtraSauce]:checked").val(), $(this).find("input[name=Garlic]:checked").val(), $(this).find("input[name=RoastedPeppers]:checked").val(),
+    // $(this).find("input[name=Pepperoni]:checked").val(), $(this).find("input[name=Sausage]:checked").val(), $(this).find("input[name=Spinach]:checked").val(), $(this).find("input[name=Pineapple]:checked").val(),
+    // $(this).find("input[name=CanadianBacon]:checked").val(), $(this).find("input[name=Bacon]:checked").val(),
+    // $(this).find("input[name=Onions]:checked").val(), $(this).find("input[name=Mushrooms]:checked").val()];
 
     var newPizzaOrder = new PizzaOrder (inputtedQuantity, inputtedSize, inputtedName, inputtedToppings);
+    var price = newPizzaOrder.calculatePrice();
 
-    $(".orderList").show();
-    $("ul#orders").append("<li><span class='order'>" + newPizzaOrder.orderSummary() + "</span></li>");
+    if (inputtedSize === "" || inputtedName === "" || inputtedToppings === 0) {
+      alert("Please fill in all fields!");
+    }
+    else {
 
-//clears the input fields after submit
-    $("input#inputtedQuantity").val("");
-    $("select#inputtedSize").val("");
-    $('input:checkbox').removeAttr('checked');
+      $(".orderList").show();
+      $("ul#orders").append("<li><span class='order'>" + newPizzaOrder.orderSummary() + "</span></li>");
+
+      $("input#inputtedQuantity").val("");
+      $("select#inputtedSize").val("");
+      $('input:checkbox').removeAttr('checked');
+      $("input#inputtedName").val("");
+    };
 
 //when you click the appended order, it shows up on the side with more details
     $(".order").last().click(function() {
@@ -66,8 +80,9 @@ $(document).ready(function() {
       $("#show-order h2").text(newPizzaOrder.orderSummary());
       $(".quantity").text(newPizzaOrder.quantity);
       $(".size").text(newPizzaOrder.pizzaSize);
-      newPizzaOrder.toppings.forEach(function(topping) {
-        $("ul#toppings").append("<li>" + inputtedToppings + "</li>");
+      $(".price").text(newPizzaOrder.price);
+      newPizzaOrder.toppings.forEach(function(inputtedToppings) {
+        $("ul#toppings").append("<li>" + toppings[i] + "</li>");
       });
     });
   });
