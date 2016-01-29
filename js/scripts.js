@@ -41,7 +41,7 @@ PizzaOrder.prototype.orderSummary = function() {
 $(document).ready(function() {
   $("form#new-order").submit(function(event) {
     event.preventDefault();
-debugger;
+
     var inputtedQuantity = $("input#inputtedQuantity").val();
     var inputtedSize = $("select#inputtedSize").val();
     var inputtedName = $("input#inputtedName").val();
@@ -69,19 +69,13 @@ debugger;
       $("input#inputtedName").val("");
     };
 
-//when you click the appended order, it shows up on the side with more details
     $(".order").last().click(function() {
-
       $("#show-order").show();
       $("#show-order h2").text(newPizzaOrder.orderSummary());
       $(".price").text("$" + roundedPrice);
 
-
-
       for (var i = 0; i < inputtedToppings.length; i++) {
-        if (i === inputtedToppings.length) {
         $("ul#toppings").append("<li>" + inputtedToppings[i] + "</li>");
-        };
       };
     });
   });
