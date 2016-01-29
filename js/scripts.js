@@ -32,11 +32,12 @@ PizzaOrder.prototype.calculatePrice = function() {
 };
 
 PizzaOrder.prototype.orderSummary = function() {
+  // debugger;
   for (var i = 0; i < specialToppings.length; i++) {
     if(this.toppings[i] === specialToppings[i]) {
       chosenToppings.push(specialToppings[i]);
-      return this.pizzaSize + " " + this.toppings[i];
     }
+  return this.pizzaSize + " " + this.toppings[i];
   }
 };
 
@@ -49,10 +50,12 @@ $(document).ready(function() {
 
     var inputtedQuantity = $("input#inputtedQuantity").val();
     var inputtedSize = $("select#inputtedSize").val();
-    var inputtedToppings = $("input[label=inputtedToppings]:checked").val(); ///got from ronando form_dating
-    var newPizzaOrder = new PizzaOrder (inputtedQuantity, inputtedSize, inputtedToppings);
 
-    var returnvalue = $(".inputtedToppings").prop("checked");
+    var inputtedToppings = [$("input[name=JustCheese]:checked").val(), $("input[name=ExtraCheese]:checked").val(), $("input[name=ExtraSauce]:checked").val(), $("input[name=Garlic]:checked").val(), $("input[name=RoastedPeppers]:checked").val(), $("input[name=Pepperoni]:checked").val(), $("input[name=Sausage]:checked").val(), $("input[name=Spinach]:checked").val(), $("input[name=Pineapple]:checked").val(),
+    $("input[name=CanadianBacon]:checked").val(), $("input[name=Bacon]:checked").val(),
+    $("input[name=Onions]:checked").val(), $("input[name=Mushrooms]:checked").val()]; ///got from ronando form_dating
+
+    var newPizzaOrder = new PizzaOrder (inputtedQuantity, inputtedSize, inputtedToppings);
 
 
     $("ul#orders").append("<li><span class='order'>" + newPizzaOrder.orderSummary() + "</span></li>");
