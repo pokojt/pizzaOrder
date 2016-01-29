@@ -6,6 +6,16 @@
   display: none;
 }
 
+#orders {
+  cursor: pointer;
+  color: #0088cc;
+  list-style-image: url("../img/pizza.png");
+}
+
+#orders:hover {
+  text-decoration: underline;
+}
+
 .jumbotron {
   height: 400px;
   background-image: url("../img/pizza1.jpg");

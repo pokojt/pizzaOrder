@@ -7,7 +7,6 @@ function PizzaOrder(quantity, pizzaSize, pizzaName, toppings, toppingsPrice, pri
   this.price = price;
 };
 
-
 PizzaOrder.prototype.calculatePrice = function() {
 
   var specialToppings = ["Extra Cheese", "Extra Sauce", "Garlic", "Roasted Peppers", "Pepperoni", "Sausage", "Spinach", "Pineapple", "Canadian Bacon", "Bacon", "Onions", "Mushrooms"];
@@ -71,12 +70,18 @@ $(document).ready(function() {
 
     $(".order").last().click(function() {
       $("#show-order").show();
-      $("#show-order h2").text(newPizzaOrder.orderSummary());
+      $("#toppings").empty();
+      $("#show-order h4").text(newPizzaOrder.orderSummary());
       $(".price").text("$" + roundedPrice);
 
       for (var i = 0; i < inputtedToppings.length; i++) {
         $("ul#toppings").append("<li>" + inputtedToppings[i] + "</li>");
       };
+    });
+
+    $(document).on('click', '#deletePizza', function() {
+      $("#show-order").last().hide();
+      $("span#" + this.id).remove();
     });
   });
 });

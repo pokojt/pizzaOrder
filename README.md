@@ -4,6 +4,11 @@
 
 ##Description
 
+For this project, we were instructed to create a website for a pizza company where a user can order a pizza and see the final cost. I used Object Oriented Javascript to:
+
+- Allow the user to choose toppings and size for the pizza they'd like to order.
+- Create a pizza object constructor with properties for toppings and size.
+- Create a prototype method for the cost of a pizza depending on the selections chosen. Use your own formula for this.
 
 
 ##Installation
@@ -22,7 +27,7 @@ Or, you can run the application [here](http://pokojt.github.io/pizzaOrder).
 - Javascript
 - jQuery
 - Git, gitHub, gitHub Pages
-- BDD
+- BDD and Object-Oriented Javascript
 
 ##Copyright (c)
 
