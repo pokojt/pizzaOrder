@@ -42,7 +42,6 @@ $(document).ready(function() {
   $("form#new-order").submit(function(event) {
     event.preventDefault();
 
-debugger;
     var inputtedQuantity = $("input#inputtedQuantity").val();
     var inputtedSize = $("select#inputtedSize").val();
     var inputtedName = $("input#inputtedName").val();
@@ -71,14 +70,18 @@ debugger;
 
 //when you click the appended order, it shows up on the side with more details
     $(".order").last().click(function() {
+      debugger;
       $("#show-order").show();
       $("#show-order h2").text(newPizzaOrder.orderSummary());
-      $(".quantity").text(newPizzaOrder.quantity);
-      $(".size").text(newPizzaOrder.pizzaSize);
+      // $(".quantity").text(newPizzaOrder.quantity);
+      // $(".size").text(newPizzaOrder.pizzaSize);
       $(".price").text(newPizzaOrder.price);
-      newPizzaOrder.toppings.forEach(function(inputtedToppings) {
-        $("ul#toppings").append("<li>" + toppings[i] + "</li>");
-      });
+
+      for (var i = 0; i < inputtedToppings.length; i++) {
+        if (i === inputtedToppings.length) {
+        $("ul#toppings").append("<li>" + inputtedToppings[i] + "</li>");
+        };
+      };
     });
   });
 });
