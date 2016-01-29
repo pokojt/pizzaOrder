@@ -1,18 +1,20 @@
 function PizzaOrder(quantity, pizzaSize, toppings, price) {
   this.quantity = quantity;
   this.pizzaSize = pizzaSize;
-  this.toppings = toppings;
+  this.toppings = [];
   this.price = price;
 };
+
+  var specialToppings = ["Extra Cheese", "Extra Sauce", "Garlic", "Roasted Peppers", "Pepperoni", "Sausage", "Spinach", "Pineapple", "Canadian Bacon", "Bacon", "Onions", "Mushrooms"];
 
 PizzaOrder.prototype.calculatePrice = function() {
 
   var medprice = 14;
   var chosenToppings = [];
-  var specialToppings = ["Extra Cheese", "Extra Sauce", "Garlic", "Roasted Peppers", "Pepperoni", "Sausage", "Spinach", "Pineapple", "Canadian Bacon", "Bacon", "Onions", "Mushrooms"];
 
   for (var i = 0; i < specialToppings.length; i++) {
-    if(this.toppings === specialToppings[i]) {
+    // debugger;
+    if(this.toppings[i] === specialToppings[i]) {
       chosenToppings.push(specialToppings[i]);
       // price += .50;
     }
@@ -30,7 +32,12 @@ PizzaOrder.prototype.calculatePrice = function() {
 };
 
 PizzaOrder.prototype.orderSummary = function() {
-  return this.pizzaSize + " " + this.toppings;
+  for (var i = 0; i < specialToppings.length; i++) {
+    if(this.toppings[i] === specialToppings[i]) {
+      chosenToppings.push(specialToppings[i]);
+      return this.pizzaSize + " " + this.toppings[i];
+    }
+  }
 };
 
 
@@ -42,7 +49,7 @@ $(document).ready(function() {
 
     var inputtedQuantity = $("input#inputtedQuantity").val();
     var inputtedSize = $("select#inputtedSize").val();
-    var inputtedToppings = $("checked.inputtedToppings").val();
+    var inputtedToppings = $("input[label=inputtedToppings]:checked").val(); ///got from ronando form_dating
     var newPizzaOrder = new PizzaOrder (inputtedQuantity, inputtedSize, inputtedToppings);
 
     var returnvalue = $(".inputtedToppings").prop("checked");
