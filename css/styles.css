@@ -6,6 +6,10 @@
   display: none;
 }
 
+.modal-content {
+  text-align: center;
+}
+
 #orders {
   cursor: pointer;
   color: #0088cc;

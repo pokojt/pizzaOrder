@@ -21,10 +21,6 @@
         <div class="col-md-6">
           <p class="lead">Please enter your order here:</p>
           <form id="new-order">
-            <!-- <div class="form-group">
-              <label for="inputtedQuantity">Quantity:</label>
-              <input id="inputtedQuantity" type="number">
-            </div> -->
             <div class="form-group">
               <label for="inputtedName">Name your Pizza:</label>
               <input id="inputtedName" type=text>
@@ -88,7 +84,6 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -97,7 +92,7 @@
         </div>
         <div class="col-md-6">
           <h2 class="orderList">Your Order:</h2>
-          <p class="orderList">Click for price, details, and to submit your order. Or add another pizza on the left, because pizza.</p>
+          <p class="orderList">Click for price, details, and to place your order. <em>Or</em> add another pizza on the left, because pizza.</p>
           <ul id="orders">
           </ul>
           <br></br>
@@ -107,13 +102,26 @@
             <ul id="toppings">
             </ul>
             <p>Price: <span class="price"></span></p>
-            <!-- <button id="deletePizza" class="btn btn-danger" type="button" name="button">Delete This Pizza</button> -->
-            <button class="btn btn-primary" type="button" name="button">Place Order</button>
+            <button id="placeOrder" class="btn btn-primary" type="button" name="button">Place Whole Order</button>
           </div>
         </div>
       </div>
-
-
+    </div>
+    <div id="modal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h2 class="modal-title">Sweet !</h2>
+          </div>
+          <div class="modal-body">
+            <img class="img-responsive" src ="img/pizzadream.png">
+            <br></br>
+            <p class="lead">See you soon.</p>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
       </div>
     </div>
     <div class="footer">
@@ -126,8 +134,5 @@
         </div>
       </div>
     </div>
-
-
-
   </body>
 </html>
