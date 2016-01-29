@@ -1,12 +1,13 @@
-function PizzaOrder(quantity, pizzaSize, toppings) {
+function PizzaOrder(quantity, pizzaSize, toppings, price) {
   this.quantity = quantity;
   this.pizzaSize = pizzaSize;
   this.toppings = toppings;
+  this.price = price;
 };
 
-PizzaOrder.prototype.price = function() {
+PizzaOrder.prototype.calculatePrice = function() {
 
-  var price = 14;
+  var medprice = 14;
   var chosenToppings = [];
   var specialToppings = ["Extra Cheese", "Extra Sauce", "Garlic", "Roasted Peppers", "Pepperoni", "Sausage", "Spinach", "Pineapple", "Canadian Bacon", "Bacon", "Onions", "Mushrooms"];
 
@@ -17,39 +18,52 @@ PizzaOrder.prototype.price = function() {
     }
   }
   if (this.pizzaSize === "Small") {
-    price -= 2;
+    medprice -= 2;
   }
   if (this.pizzaSize === "Large") {
-    price += 2;
+    medprice += 2;
   }
   if (this.pizzaSize === "XL") {
-    price += 4;
+    medprice += 4;
   }
-  return price + (chosenToppings.length / 2);
+  return medprice + (chosenToppings.length / 2);
+};
+
+PizzaOrder.prototype.orderSummary = function() {
+  return this.pizzaSize + " " + this.toppings;
 };
 
 
-// $(document).ready(function() {
-//   $("form#new-order").submit(function(event) {
-//     event.preventDefault();
-//
-//     var inputtedQuantity = $("input#inputtedQuantity").val();
-//     var inputtedSize = $("input#inputtedSize").val();
-//     var inputtedToppings = $("input#inputtedToppings").val();
-//     var newPizzaOrder = new PizzaOrder (inputtedQuantity, inputtedSize, inputtedToppings);
-//
-//     $("ul#orders").append("<li><span class='order'>" + newPizzaOrder.fullOrder() + "</span></li>");
-//
-//     $("input#inputtedQuantity").val("");
-//     $("input#inputtedSize").val("");
-//     $("input#inputtedToppings").val("");
-//
-//     $(".order").last().click(function() {
-//       $("#show-order").show();
-//       $("#show-order h2").text(newPizzaOrder.fullName());
-//       $(".quantity").text(newPizzaOrder.firstName);
-//       $(".size").text(newPizzaOrder.lastName);
-//     });
-//   });
-//
-// });
+$(document).ready(function() {
+  $("form#new-order").submit(function(event) {
+    event.preventDefault();
+    debugger;
+
+
+    var inputtedQuantity = $("input#inputtedQuantity").val();
+    var inputtedSize = $("select#inputtedSize").val();
+    var inputtedToppings = $("checked.inputtedToppings").val();
+    var newPizzaOrder = new PizzaOrder (inputtedQuantity, inputtedSize, inputtedToppings);
+
+    var returnvalue = $(".inputtedToppings").prop("checked");
+
+
+    $("ul#orders").append("<li><span class='order'>" + newPizzaOrder.orderSummary() + "</span></li>");
+
+//clears the input fields after submit
+    $("input.inputtedQuantity").val("");
+    $("input.inputtedSize").val("");
+    $("input.inputtedToppings").val("");
+
+//when you click the appended order, it shows up on the side with more details
+    $(".order").last().click(function() {
+      $("#show-order").show();
+      $("#show-order h2").text(newPizzaOrder.orderSummary());
+      $(".quantity").text(newPizzaOrder.quantity);
+      $(".size").text(newPizzaOrder.pizzaSize);
+      newPizzaOrder.toppings.forEach(function(topping) {
+        $("ul#toppings").append("<li>" + inputtedToppings + "</li>");
+      });
+    });
+  });
+});
