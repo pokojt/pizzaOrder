@@ -12,16 +12,15 @@ PizzaOrder.prototype.calculatePrice = function() {
 
   var specialToppings = ["Extra Cheese", "Extra Sauce", "Garlic", "Roasted Peppers", "Pepperoni", "Sausage", "Spinach", "Pineapple", "Canadian Bacon", "Bacon", "Onions", "Mushrooms"];
   var medprice = 14;
-  // var chosenToppings = [];
 
-  // for (var i = 0; i < this.toppings.length; i++) {
-  //   for (var j=0, j < specialToppings.length; j++){
-  //     if(this.toppings[i] === specialToppings[j]) {
-  //     this.toppingsPrice.push(.50);
-  //     medprice += .50;
-  //     }
-  //   }
-  // }
+  for (var i = 0; i < this.toppings.length; i++) {
+    for (var j = 0, j < specialToppings.length; j++){
+      if(this.toppings[i] === specialToppings[j]) {
+      this.toppingsPrice.push(.50);
+      medprice += .50;
+      }
+    }
+  }
   if (this.pizzaSize === "Small") {
     medprice -= 2;
   }
@@ -50,12 +49,8 @@ debugger;
 
     var inputtedToppings = [];
       $.each($('input[name="topping"]:checked'), function() {
-        toppings.push($(this).val());
+        inputtedToppings.push($(this).val());
       });
-    //  [$(this).find("input[name=JustCheese]:checked").val(), $(this).find("input[name=ExtraCheese]:checked").val(), $(this).find("input[name=ExtraSauce]:checked").val(), $(this).find("input[name=Garlic]:checked").val(), $(this).find("input[name=RoastedPeppers]:checked").val(),
-    // $(this).find("input[name=Pepperoni]:checked").val(), $(this).find("input[name=Sausage]:checked").val(), $(this).find("input[name=Spinach]:checked").val(), $(this).find("input[name=Pineapple]:checked").val(),
-    // $(this).find("input[name=CanadianBacon]:checked").val(), $(this).find("input[name=Bacon]:checked").val(),
-    // $(this).find("input[name=Onions]:checked").val(), $(this).find("input[name=Mushrooms]:checked").val()];
 
     var newPizzaOrder = new PizzaOrder (inputtedQuantity, inputtedSize, inputtedName, inputtedToppings);
     var price = newPizzaOrder.calculatePrice();
