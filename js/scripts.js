@@ -53,6 +53,7 @@ debugger;
 
     var newPizzaOrder = new PizzaOrder (inputtedQuantity, inputtedSize, inputtedName, inputtedToppings);
     var price = newPizzaOrder.calculatePrice();
+    var roundedPrice = price.toFixed(2);
 
     if (inputtedSize === "" || inputtedName === "" || inputtedToppings === 0) {
       alert("Please fill in all fields!");
@@ -73,9 +74,9 @@ debugger;
 
       $("#show-order").show();
       $("#show-order h2").text(newPizzaOrder.orderSummary());
-      // $(".quantity").text(newPizzaOrder.quantity);
-      // $(".size").text(newPizzaOrder.pizzaSize);
-      $(".price").text("$" + price);
+      $(".price").text("$" + roundedPrice);
+
+
 
       for (var i = 0; i < inputtedToppings.length; i++) {
         if (i === inputtedToppings.length) {
